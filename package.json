@@ -4,7 +4,7 @@
   "description": "A TODO's CRUD",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "app": "node index.js"
   },
   "repository": {
     "type": "git",
