@@ -1,0 +1,33 @@
+{
+  "name": "todo",
+  "version": "0.0.1",
+  "description": "A TODO's CRUD",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianmarino/todo.git"
+  },
+  "keywords": [
+    "TODO"
+  ],
+  "author": "Adrian Noerberto Marino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianmarino/todo/issues"
+  },
+  "homepage": "https://github.com/adrianmarino/todo#readme",
+  "dependencies": {
+    "common": "https://github.com/adrianmarino/common",
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "js-yaml": "^3.6.1",
+    "mongojs": "^2.4.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
+}

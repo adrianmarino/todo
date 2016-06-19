@@ -1,0 +1,8 @@
+database:
+    username: adrian
+    password: 1234
+    hostname: localhost
+    port: 27017
+    name: TODO
+server:
+    port: 8080
