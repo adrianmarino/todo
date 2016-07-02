@@ -1,3 +1,7 @@
 .vscode/
+client/node_modules/
+client/public/
+server/npm-debug.log
+
 node_modules/
-npm-debug.log
+server/npm-debug.log
