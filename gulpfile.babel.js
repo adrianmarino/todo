@@ -77,4 +77,7 @@ gulp.task('serve', () => {
 });
 
 gulp.task('build', (done) => runSequence('clean', 'copy-resources', 'compile', done));
+
+gulp.task('public-auto-update', (done) => runSequence('build', 'watch', done));
+
 gulp.task('default', (done) => runSequence('build', 'watch', 'serve', done));

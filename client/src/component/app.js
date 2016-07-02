@@ -1,8 +1,9 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-import { Component }      from '@angular/core';
-import { Http, Headers }  from '@angular/http';
+import { Component, Inject } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { TodoService } from '../service/todo';
 //-----------------------------------------------------------------------------
 //
 //
@@ -26,14 +27,9 @@ import { Http, Headers }  from '@angular/http';
   `
 })
 export class AppComponent {
-  constructor(http: Http) { this.http = http; }
+  constructor(@Inject(TodoService) service) { this.service = service; }
 
   findAll() {
-    this.http.get('http://localhost:8080/api/v1/todos')
-      .subscribe(
-        data => this.list = data.text(),
-        err => this.logError(err.text()),
-        () => console.log('Find all todos complete')
-      );
+    this.service.findAll(data => this.list = data.text());
   }
 }

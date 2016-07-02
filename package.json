@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "app": "gulp build && cd server && node boot.js",
-    "backend": "cd server && node boot.js",
-    "fontend": "gulp"
+    "back-end": "cd server && node boot.js",
+    "public-auto-update": "gulp public-auto-update"
   },
   "repository": {
     "type": "git",

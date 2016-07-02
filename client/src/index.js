@@ -3,9 +3,10 @@
 //-----------------------------------------------------------------------------
 import 'babel-polyfill';
 import 'zone.js/dist/zone';
-import {bootstrap }         from '@angular/platform-browser-dynamic';
-import { AppComponent }     from './component/app';
-import { HTTP_PROVIDERS }   from '@angular/http';
+import {bootstrap } from '@angular/platform-browser-dynamic';
+import { AppComponent } from './component/app';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { TodoService } from './service/todo';
 //-----------------------------------------------------------------------------
 //
 //
@@ -13,4 +14,4 @@ import { HTTP_PROVIDERS }   from '@angular/http';
 //-----------------------------------------------------------------------------
 // Boot
 //-----------------------------------------------------------------------------
-bootstrap(AppComponent, [HTTP_PROVIDERS])
+bootstrap(AppComponent, [HTTP_PROVIDERS, TodoService])
