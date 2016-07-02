@@ -26,11 +26,11 @@ import webserver              from 'gulp-webserver';
 const config = {
   client: {
     resourcesPath: ['client/resources/**/*'],
-    sourcePath: ['client/src/index.js', 'client/src/component/app.js']
+    sourcePath: ['client/src/index.js']
   }
 };
 //-----------------------------------------------------------------------------
-//
+//11
 //
 //
 //-----------------------------------------------------------------------------
@@ -64,7 +64,7 @@ gulp.task('compile', () => {
 gulp.task('watch', () => {
   const b = browserify(config.client.sourcePath, assign({ debug: true }, watchify.args)).transform(babelify);
   const w = watchify(b).on('update', () => bundle(w)).on('log', gutil.log);
-  return bundle(w)
+  return bundle(w);
 });
 
 gulp.task('serve', () => {

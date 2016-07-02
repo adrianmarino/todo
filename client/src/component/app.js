@@ -2,7 +2,7 @@
 // Require
 //-----------------------------------------------------------------------------
 import { Component, Inject } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { NavBarComponent } from './navbar';
 import { TodoService } from '../service/todo';
 //-----------------------------------------------------------------------------
 //
@@ -14,22 +14,25 @@ import { TodoService } from '../service/todo';
 //-----------------------------------------------------------------------------
 @Component({
   selector: 'app',
+  directives: [NavBarComponent],
   template: `
-    <header>
-      <h1 class="title">TODO</h1>
-    </header>
-
-    <section>
-      <hr>
-      <h3>{{ list }}</h3>
-      <button (click)="findAll()">Get All</button>
-    <section>
+    <div class="container">
+      <navbar title="TODOS" phase="Simple todo crud" icon="glyphicon glyphicon-ok"></navbar>
+      <div class="jumbotron">
+        <button (click)="findAll()">Get All</button>
+        <div>
+          {{ list }}
+        </div>
+      </div>
+    </div>
   `
 })
 export class AppComponent {
-  constructor(@Inject(TodoService) service) { this.service = service; }
+  constructor(@Inject(TodoService) service) { 
+    this.service = service;
+  }
 
   findAll() {
-    this.service.findAll(data => this.list = data.text());
+    this.service.findAll(response => this.list = response.text());
   }
 }
