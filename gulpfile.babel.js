@@ -21,6 +21,19 @@ import webserver              from 'gulp-webserver';
 //
 //
 //-----------------------------------------------------------------------------
+// Config
+//-----------------------------------------------------------------------------
+const config = {
+  client: {
+    resourcesPath: ['client/resources/**/*'],
+    sourcePath: ['client/src/index.js', 'client/src/component/app.js']
+  }
+};
+//-----------------------------------------------------------------------------
+//
+//
+//
+//-----------------------------------------------------------------------------
 // Functions
 //-----------------------------------------------------------------------------
 function bundle(b) {
@@ -40,16 +53,16 @@ function bundle(b) {
 // Tasks
 //-----------------------------------------------------------------------------
 gulp.task('clean', () => del('public'));
-gulp.task('copy-resources', () => gulp.src(['resources/**/*']).pipe(gulp.dest('public')));
+gulp.task('copy-resources', () => gulp.src(config.client.resourcesPath).pipe(gulp.dest('public')));
 
 gulp.task('compile', () => {
-  const b = browserify(['src/index.js', 'src/component/app.js'], { debug: true })
+  const b = browserify(config.client.sourcePath, { debug: true })
     .transform(babelify);
   return bundle(b);
 });
 
 gulp.task('watch', () => {
-  const b = browserify(['src/index.js', 'src/component/app.js'], assign({ debug: true }, watchify.args)).transform(babelify);
+  const b = browserify(config.client.sourcePath, assign({ debug: true }, watchify.args)).transform(babelify);
   const w = watchify(b).on('update', () => bundle(w)).on('log', gutil.log);
   return bundle(w)
 });

@@ -8,8 +8,8 @@ var Config = require('../config').Config;
 // Private variables
 //-----------------------------------------------------------------------------
 var instance;
-var path = './lib/config/development.yml';
-    
+var path = './config/development.yml';
+
 
 //-----------------------------------------------------------------------------
 // Public functions
