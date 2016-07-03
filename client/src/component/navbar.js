@@ -24,7 +24,12 @@ import { Component, Inject, Input } from '@angular/core';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">{{title}}  <span class="glyphicon glyphicon-{{icon}}" aria-hidden="true"></span></a>
+          <a class="navbar-brand" href="#">{{title}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <p class="navbar-text navbar-right">
+            <span class="glyphicon glyphicon-{{icon}}" aria-hidden="true"></span>
+          </p> 
         </div>
       </div>
     </nav>

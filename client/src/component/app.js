@@ -18,7 +18,7 @@ import { TodoService } from '../service/todo';
   directives: [NavBarComponent, TodoListComponent],
   template: `
     <div class="container">
-      <navbar title="TODOS" phase="Simple todo crud" icon="glyphicon glyphicon-ok"></navbar>
+      <navbar title="TODOS" phase="Simple todo crud" icon="ok"></navbar>
       <div class="well well-lg">
         <todolist [list]="todos"></todolist>
       </div>
