@@ -30,7 +30,7 @@ import { TodoService } from '../services/todo';
       </cv-menu>
 
       <cv-content>
-        <div class="well">
+        <div class="lead">
           <todolist [list]="todos"></todolist>
         </div>
       </cv-content>

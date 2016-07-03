@@ -2,7 +2,6 @@
 // Require
 //-----------------------------------------------------------------------------
 import { Component } from '@angular/core';
-import { IconComponent } from './lib/icon'
 //-----------------------------------------------------------------------------
 //
 //
@@ -14,7 +13,6 @@ import { IconComponent } from './lib/icon'
 @Component({
   selector: 'todolist',
   inputs: ['list'],
-  directives: [IconComponent],
   template: `
     <ul class="list-group">
         <li *ngFor="let todo of list; let number=index" 
@@ -22,7 +20,6 @@ import { IconComponent } from './lib/icon'
                     list-group-item-{{ todo.isCompleted ? 'success' : 'warning'}}">
             <span class="badge">{{number + 1}}</span>
             {{todo.text}}
-            <icon *ngIf="todo.isCompleted" name="ok"> </icon>
         </li>
     </ul>
   `
