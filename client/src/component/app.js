@@ -18,11 +18,15 @@ import { TodoService } from '../service/todo';
   template: `
     <div class="container">
       <navbar title="TODOS" phase="Simple todo crud" icon="glyphicon glyphicon-ok"></navbar>
-      <div class="jumbotron">
-        <button (click)="findAll()">Get All</button>
-        <div>
-          {{ list }}
-        </div>
+      <div class="well well-lg">
+        <ul class="list-group">
+          <li *ngFor="let todo of todos; let number=index" 
+              class="list-group-item
+                     list-group-item-{{ todo.isCompleted ? 'success' : 'warning'}}">
+             <span class="badge">{{number + 1}}</span>
+            {{todo.text}}
+          </li>
+        </ul>
       </div>
     </div>
   `
@@ -30,9 +34,10 @@ import { TodoService } from '../service/todo';
 export class AppComponent {
   constructor(@Inject(TodoService) service) { 
     this.service = service;
+    this.findAll();
   }
 
   findAll() {
-    this.service.findAll(response => this.list = response.text());
+    this.service.findAll(response => this.todos = response.json());
   }
 }
