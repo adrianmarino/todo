@@ -1,17 +1,21 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-import 'babel-polyfill';
-import 'zone.js/dist/zone';
-import {bootstrap } from '@angular/platform-browser-dynamic';
-import { AppComponent } from './components/app';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { TodoService } from './services/todo';
+import { Component } from '@angular/core';
 //-----------------------------------------------------------------------------
 //
 //
 //
+//
 //-----------------------------------------------------------------------------
-// Boot
+// Component
 //-----------------------------------------------------------------------------
-bootstrap(AppComponent, [HTTP_PROVIDERS, TodoService])
+@Component({
+  selector: 'icon',
+  inputs: ['name'],
+  template: `
+    <span class="glyphicon glyphicon-{{name}}" aria-hidden="true"></span>
+  `
+})
+export class IconComponent {
+}
