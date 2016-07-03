@@ -26,12 +26,12 @@ import { TodoService } from '../service/todo';
   `
 })
 export class AppComponent {
+
   constructor(@Inject(TodoService) service) { 
     this.service = service;
     this.findAll();
   }
 
-  findAll() {
-    this.service.findAll(response => this.todos = response.json());
-  }
+  findAll() { this.service.findAll(response => this.todos = response.json()); }
+
 }
