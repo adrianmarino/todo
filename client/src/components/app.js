@@ -26,10 +26,14 @@ import { TodoService } from '../services/todo';
 
       <cv-menu>
         <a class="nav-link active" href="#">Sign In</a>
-        <a class="nav-link" href="#">Contact</a>
       </cv-menu>
 
       <cv-content>
+        <div class="lead" style="text-align-last: left">
+          <a href="#" class="btn btn-lg btn-secondary">
+            <icon name="plus"></icon>
+          </a>
+        </div>
         <div class="lead">
           <todolist [list]="todos"></todolist>
         </div>
