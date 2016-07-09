@@ -41,7 +41,6 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    
     "@angular/common": "2.0.0-rc.3",
     "@angular/compiler": "2.0.0-rc.3",
     "@angular/core": "2.0.0-rc.3",
@@ -49,7 +48,6 @@
     "@angular/platform-browser": "2.0.0-rc.3",
     "@angular/platform-browser-dynamic": "2.0.0-rc.3",
     "@angular/router": "3.0.0-alpha.7",
-
     "babel-polyfill": "^6.8.0",
     "body-parser": "^1.15.1",
     "common": "https://github.com/adrianmarino/common",
@@ -59,6 +57,7 @@
     "js-yaml": "^3.6.1",
     "mongojs": "^2.4.0",
     "morgan": "^1.7.0",
+    "ng2-bootstrap": "^1.0.17",
     "path": "^0.12.7",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "0.6.12"

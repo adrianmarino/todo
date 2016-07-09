@@ -2,6 +2,7 @@
 // Require
 //-----------------------------------------------------------------------------
 import { Component } from '@angular/core';
+import { IconComponent } from './icon';
 //-----------------------------------------------------------------------------
 //
 //
@@ -11,11 +12,17 @@ import { Component } from '@angular/core';
 // Component
 //-----------------------------------------------------------------------------
 @Component({
-  selector: 'icon',
-  inputs: ['name'],
+  selector: 'ns-button',
+  inputs: ['label', 'type', 'icon'],
+  directives: [IconComponent],
   template: `
-    <span class="glyphicon glyphicon-{{name}}"></span>
+    <button class="btn btn-{{type}}" type="button">
+        <icon [name]="icon"></icon> <ng-content></ng-content>
+    </button>
   `
 })
-export class IconComponent {
+export class ButtonComponent {
+    constructor() {
+        this.type  = "default";
+    }
 }

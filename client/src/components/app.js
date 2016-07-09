@@ -2,10 +2,10 @@
 // Require
 //-----------------------------------------------------------------------------
 import { Component, Inject } from '@angular/core';
-import { CoverTemplateComponent } from './lib/template/cover';
+import { DefaultTemplateComponent } from './lib/template/default';
 import { TodoListComponent } from './todolist';
-import { IconComponent } from './lib/icon'
-import { AuthorComponent } from './lib/author'
+import { InputButtonComponent } from './lib/input-button'
+import { AuthorComponent } from './lib/author';
 import { TodoService } from '../services/todo';
 //-----------------------------------------------------------------------------
 //
@@ -17,38 +17,27 @@ import { TodoService } from '../services/todo';
 //-----------------------------------------------------------------------------
 @Component({
   selector: 'app',
-  directives: [CoverTemplateComponent, IconComponent, AuthorComponent, TodoListComponent],
+  directives: [DefaultTemplateComponent, AuthorComponent, TodoListComponent, InputButtonComponent],
   template: `
-    <cv-template>
-      <cv-title>
-        TODOS <icon name="ok"></icon>
-      </cv-title>
-      <cv-menu>
-        <a class="nav-link active" href="#">Sign In</a>
-      </cv-menu>
-      <cv-content>
-        <div class="lead" style="text-align-last: left">
-          <a href="#" class="btn btn-lg btn-secondary">
-            <icon name="plus"></icon>
-          </a>
-        </div>
-        <div class="lead">
+    <df-template>
+      <df-title>ToDoS</df-title>
+      <df-content>
+        <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+          <input-button placeholder="Write a todo..." btn_label="Add" btn_icon="plus" btn_type="primary"></input-button>
+          <hr/>
           <todolist [list]="todos"></todolist>
         </div>
-      </cv-content>
-      <cv-footer>
+      </df-content>
+      <df-footer class="pull-right">
         <author name="Adrian Norberto Marino" email="adrianmarino@gmail.com" github="adrianmarino"></author>
-      </cv-footer>
-    </cv-template>
+      </df-footer>
+    </df-template>
   `
 })
 export class AppComponent {
-
   constructor(@Inject(TodoService) service) { 
     this.service = service;
     this.findAll();
   }
-
   findAll() { this.service.findAll(response => this.todos = response.json()); }
-
 }
