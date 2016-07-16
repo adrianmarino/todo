@@ -4,9 +4,9 @@
 function Todo(id, text, isCompleted) {
     this.id = id;
     this.text = text;
-    this.isCompleted = isCompleted;
+    this.isCompleted = isCompleted || false;
 
-    this.isValid = ()  => this.text && this.isCompleted;
+    this.isValid = ()  => this.text;
     this.hasState = () => this.text || this.isCompleted;
 }
 

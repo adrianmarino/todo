@@ -1,9 +1,7 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
-import {BUTTON_DIRECTIVES} from 'ng2-bootstrap';
+import { Component, EventEmitter } from '@angular/core';
 
 import { IconComponent } from './lib/icon'
 //-----------------------------------------------------------------------------
@@ -17,7 +15,8 @@ import { IconComponent } from './lib/icon'
 @Component({
   selector: 'todolist',
   inputs: ['list'],
-  directives: [BUTTON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, IconComponent],
+  outputs: ['onRemove'],
+  directives: [IconComponent],
   template: `
     <ul class="list-group">
         <li *ngFor="let todo of list" class="list-group-item list-group-item clearfix task">
@@ -30,7 +29,7 @@ import { IconComponent } from './lib/icon'
                      <label class="btn btn-primary">
                         <icon name="pencil"></icon>
                      </label>
-                    <label class="btn btn-danger">
+                    <label class="btn btn-danger" (click)="remove(todo)">
                         <icon name="remove"></icon>
                     </label>
                 </div>
@@ -40,5 +39,12 @@ import { IconComponent } from './lib/icon'
   `
 })
 export class TodoListComponent {
-    constructor() { this.list = []; }
+    remove(todo) {
+        this.onRemove.emit(todo);
+    }
+
+    constructor() { 
+        this.list = [];
+        this.onRemove = new EventEmitter();    
+    }
 }

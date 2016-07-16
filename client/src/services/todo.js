@@ -1,8 +1,9 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-import { Http } from '@angular/http';
 import { Inject } from '@angular/core';
+
+import { TodoConnector } from '../connectors/todo-connector';
 //-----------------------------------------------------------------------------
 //
 //
@@ -12,19 +13,9 @@ import { Inject } from '@angular/core';
 // Service
 //-----------------------------------------------------------------------------
 export class TodoService {
+  create(text) { return this.connector.create({ text: text }); }
+  all() { return this.connector.all(); }
+  remove(id) { return this.connector.remove(id); }
 
-  constructor(@Inject(Http) http) { 
-    this.baseApiUrl = 'http://localhost:8080/api/v1';
-    this.http = http;
-  }
-
-  findAll(callback) {
-    this.http.get(this.baseApiUrl + '/todos')
-      .subscribe(
-        callback,
-        err => this.logError(err.text()),
-        () => console.log('Find all todos complete')
-      );
-  }
-
+  constructor(@Inject(TodoConnector) connector) { this.connector = connector; }
 }
