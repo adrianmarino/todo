@@ -40,3 +40,9 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.required {
+  color: #a94442;
+  border: 3px;
+  background-color: #f2dede;
+}

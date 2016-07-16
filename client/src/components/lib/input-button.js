@@ -24,8 +24,7 @@ import {
   template: `
     <form [formGroup]="form">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="{{placeholder}}"
-          [formControl]="form.controls['text']" autofocus>
+        <input type="text" class="form-control" placeholder="{{placeholder}}" [formControl]="form.controls['text']" autofocus>
         <span class="input-group-btn">
           <button class="btn btn-{{buttonType}}" type="submit" (click)="buttonClick(form.controls['text'])">
             <span class="glyphicon glyphicon-{{buttonIcon}}"></span> {{buttonLabel}}
@@ -39,16 +38,16 @@ export class InputButtonComponent {
 
   buttonClick(text) {  
     this.onButtonClick.emit(text.value);
-    this.reset();
   }
 
   reset() {
-    this.form = this.fb.group({ text: '' });
+    this.form.controls['text'].updateValue('');
+    this.form.controls['text'].setErrors(null);
   }
 
   initalizeForm(fb) {
     this.fb = fb;
-    this.reset();
+    this.form = this.fb.group({ 'text': ['', Validators.required] });
   }
 
   constructor(@Inject(FormBuilder) fb) {
