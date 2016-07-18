@@ -41,8 +41,7 @@ code {
   font-size: 80%;
 }
 
-.required {
-  color: #a94442;
-  border: 3px;
-  background-color: #f2dede;
+.success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
 }

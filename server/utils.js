@@ -1,6 +1,14 @@
 //-----------------------------------------------------------------------------
 // Public functions
 //-----------------------------------------------------------------------------
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
+function wasDefined(value) {
+    return typeof value !== 'undefined';
+}
+
 function ResponseUtils() {
     this.internalServerError    = (response, error) => response.status(500).send({ error: error });
     this.notFound               = (response) => response.status(404).send({ message: "Not Found" });
@@ -34,3 +42,5 @@ function ResponseHandler(converter) {
 //-----------------------------------------------------------------------------
 exports.ResponseUtils   = ResponseUtils;
 exports.ResponseHandler = ResponseHandler;
+exports.isEmpty = isEmpty;
+exports.wasDefined = wasDefined;

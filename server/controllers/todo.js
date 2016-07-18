@@ -27,7 +27,7 @@ router.get(idPath, (request, response) => repository.findById(converter.toModel(
 
 router.post(basePath, (request, response) => {
     var model = converter.toModel(request);
-    model.isValid() ? repository.save(model, resHandler.json(response)) : resUtils.badRequest(response);
+    model.text ? repository.save(model, resHandler.json(response)) : resUtils.badRequest(response);
 });
 
 router.put(idPath, (request, response) => {

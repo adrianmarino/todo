@@ -29,10 +29,10 @@ import { TodoService } from '../services/todo';
       <df-content>
         <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
           <input-button placeholder="Write a todo..." buttonLabel="Add" buttonIcon="plus" buttonType="primary"
-              (onButtonClick)="onAddTodo($event)" #inputTodo>
+              (onButtonClick)="addTodo($event)" #inputTodo>
           </input-button>
           <hr/>
-          <todolist [list]="todos" (onRemove)="remove($event)"></todolist>
+          <todolist [list]="todos" (onRemove)="remove($event)" (onSuccess)="success($event)"></todolist>
         </div>
       </df-content>
       <df-footer class="pull-right">
@@ -44,11 +44,15 @@ import { TodoService } from '../services/todo';
 export class AppComponent {
   @ViewChild('inputTodo') inputTodo;
 
-  onAddTodo(text) { 
+  addTodo(text) { 
     this.service.create(text).then(res => {
       this.inputTodo.reset();
       this.all();
     });
+  }
+
+  success(todo) {
+    this.service.success(todo.id).then(res => this.all());
   }
 
   all() {

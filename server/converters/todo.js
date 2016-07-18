@@ -9,7 +9,9 @@ var Todo = require("../models").Todo;
 //-----------------------------------------------------------------------------
 module.exports = new function() {
     this.toApi = (rows) => Array.isArray(rows) ? rows.map(Pojo) : Pojo(rows);
-    this.toModel = (request) => new Todo(request.params.id, request.body.text, request.body.isCompleted);
+    this.toModel = (request) => {
+        return new Todo(request.params.id, request.body.text, request.body.isCompleted);
+    };
 }
 
 

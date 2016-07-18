@@ -19,6 +19,8 @@ export class TodoConnector {
 
   all() { return this.connector.get('/todos'); }
 
+  update(id, state) { return this.connector.put('/todos/' + id, state); }
+
   remove(id) { return this.connector.delete('/todos/' + id); }
 
   handleError(error) {

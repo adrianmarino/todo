@@ -18,7 +18,13 @@ function Repository(collection) {
 
     this.findById = (id, callback) => db.findOne(newId(id), callback);
 
-    this.save = (model, callback) => !model.id ? db.save(model, callback) : db.update(newId(model.id), model, {}, callback);
+    this.save = (model, callback) => {
+        if(model.id) {
+            db.update(newId(model.id), { $set: model.state() }, {}, callback);
+        } else {
+            db.save(model.state(), callback)
+        }
+    }
 
     this.removeById = (model, callback) => db.remove(newId(model.id), '', callback);
 }
