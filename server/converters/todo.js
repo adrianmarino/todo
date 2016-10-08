@@ -1,28 +1,36 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-var Todo = require("../models").Todo;
+let Todo = require("../models").Todo;
 
 
 //-----------------------------------------------------------------------------
 // Public functions
 //-----------------------------------------------------------------------------
-module.exports = new function() {
-    this.toApi = (rows) => Array.isArray(rows) ? rows.map(Pojo) : Pojo(rows);
-    this.toModel = (request) => {
-        return new Todo(request.params.id, request.body.text, request.body.isCompleted);
-    };
+class TodoConverter {
+    toApi(rows) {
+      return Array.isArray(rows) ? rows.map(row => new TodoPojo(row)) : new TodoPojo(rows);
+    }
+
+    toModel(request) {
+      return new Todo(request.params.id, request.body.text, request.body.completed);
+    }
 }
 
 
 //-----------------------------------------------------------------------------
 // Private functions
 //-----------------------------------------------------------------------------
-function Pojo(row) {
-    return {
-        id: row._id,
-        text: row.text,
-        isCompleted: row.isCompleted,
-    };
+class TodoPojo {
+    constructor(row) {
+      this.id = row._id;
+      this.text = row.text;
+      this.completed = row.completed;
+    }
 }
 
+
+//-----------------------------------------------------------------------------
+// Exports
+//-----------------------------------------------------------------------------
+exports.TodoConverter = TodoConverter

@@ -1,27 +1,27 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-var utils = require('./utils');
+let utils = require('./utils');
 
 
 //-----------------------------------------------------------------------------
 // Public function
 //-----------------------------------------------------------------------------
 class Todo {
-    constructor(id, text, isCompleted) {
+    constructor(id, text, completed) {
         this.id = id;
         this.text = text;
-        this.isCompleted = isCompleted;
+        this.completed = utils.wasDefined(completed) && completed;
     }
 
-    hasState() { 
+    hasState() {
         return !utils.isEmpty(this.state());
     }
 
     state() {
         let state = {};
         if(this.text) state.text = this.text
-        if(utils.wasDefined(this.isCompleted)) state.isCompleted = this.isCompleted
+        state.completed = this.completed
         return state;
     }
 }

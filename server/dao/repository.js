@@ -1,36 +1,46 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-var mongo = require('./mongo');
-var MongoDao = mongo.MongoDao;
-var mongojs = mongo.mongojs;
+let mongo = require('./mongo');
 
 
 //-----------------------------------------------------------------------------
 // Public functions
 //-----------------------------------------------------------------------------
-function Repository(collection) {
-    var dao = MongoDao([collection]);
-    var db = eval("dao.".concat(collection));    
-    var newId = (id) => { return {_id: mongojs.ObjectId(id)}; };
-
-    this.all = (callback) => db.find(callback);
-
-    this.findById = (id, callback) => db.findOne(newId(id), callback);
-
-    this.save = (model, callback) => {
-        if(model.id) {
-            db.update(newId(model.id), { $set: model.state() }, {}, callback);
-        } else {
-            db.save(model.state(), callback)
-        }
+class MongoRepository {
+    constructor(collection) {
+        let client = mongo.clientFactory.create([collection]);
+        this.client = eval("client.".concat(collection));
     }
 
-    this.removeById = (model, callback) => db.remove(newId(model.id), '', callback);
+    all(callback) {
+        this.client.find(callback);
+    }
+
+    findById(id, callback) {
+        this.client.findOne(this._newId(id), callback)
+    }
+
+    save(model, callback) {
+        if(model.id)
+            this.client.update(this._newId(model.id), { $set: model.state() }, {}, callback);
+        else
+            this.client.save(model.state(), callback);
+    }
+
+    removeById(model, callback) {
+        this.client.remove(this._newId(model.id), '', callback);
+    }
+
+    // Private
+
+    _newId(id) {
+        return {_id: mongo.mongojs.ObjectId(id)};
+    }
 }
 
 
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-exports.Repository = Repository;
+exports.MongoRepository = MongoRepository;

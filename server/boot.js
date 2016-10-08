@@ -1,21 +1,21 @@
 //-----------------------------------------------------------------------------
 // Require
 //-----------------------------------------------------------------------------
-var config          = require('./config/config').config();
-var express         = require("express");
-var path            = require("path");
-var logger          = require("morgan");
-var cookieParser    = require("cookie-parser");
-var bodyParser      = require("body-parser");
-var ejs             = require("ejs");
+let config          = require('./config/config');
+let express         = require("express");
+let path            = require("path");
+let logger          = require("morgan");
+let cookieParser    = require("cookie-parser");
+let bodyParser      = require("body-parser");
+let ejs             = require("ejs");
 // Routes
-var todos           = require("./controllers/todo");
+let todos           = require("./controllers/todo");
 
 
 //-----------------------------------------------------------------------------
 // Config
 //-----------------------------------------------------------------------------
-var app = express();
+let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
@@ -29,10 +29,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api/v1/', todos);
 
-var server = app.listen(config.server.port, () => {
-    var host = 'localhost';
-    var port = server.address().port;
+let server = app.listen(config.server.port, () => {
+    let host = 'localhost';
+    let port = server.address().port;
     console.log('App listening at http://%s:%s', host, port);
 });
- 
+
 module.exports = app;

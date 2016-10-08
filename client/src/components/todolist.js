@@ -21,17 +21,17 @@ import { IconComponent } from './lib/icon'
     <ul class="list-group">
         <li *ngFor="let todo of list"
             class="list-group-item list-group-item clearfix task"
-            [class.success]="todo.isCompleted"
+            [class.success]="todo.completed"
         >
             <p class="lead">{{todo.text}}</p>
             <span class="pull-right">
                 <div class="btn-group">
-                    <label class="btn btn-success" *ngIf="!todo.isCompleted" (click)="success(todo)">
+                    <label class="btn btn-success" *ngIf="!todo.completed" (click)="success(todo)">
                         <icon name="ok"></icon>
                     </label>
-                     <label class="btn btn-primary">
+                    <label class="btn btn-primary">
                         <icon name="pencil"></icon>
-                     </label>
+                    </label>
                     <label class="btn btn-danger" (click)="remove(todo)">
                         <icon name="remove"></icon>
                     </label>

@@ -9,31 +9,49 @@ function wasDefined(value) {
     return typeof value !== 'undefined';
 }
 
-function ResponseUtils() {
-    this.internalServerError    = (response, error) => response.status(500).send({ error: error });
-    this.notFound               = (response) => response.status(404).send({ message: "Not Found" });
-    this.badRequest             = (response) => response.status(400).send({ message: "Bad Request" });
+class ResponseUtils {
+    internalServerError(response, error) {
+      response.status(500).send({ error: error });
+    }
+
+    notFound(response) {
+      response.status(404).send({ message: "Not Found" });
+    }
+
+    badRequest(response) {
+      response.status(400).send({ message: "Bad Request" });
+    }
 }
 
-function ResponseHandler(converter) {
-    var converter  = converter;
-    var util       = new ResponseUtils();
-    var that       = this;
+class ResponseHandler {
 
-    var isEmpty = (result) => Array.isArray(result) ? !result[0] : result == null;
-    
-    var toJson = (response, result) => response.json(converter.toApi(result));
+    constructor(converter) {
+      this.converter  = converter;
+      this.util       = new ResponseUtils();
+    }
 
-    this.json = (response) => {
-        return (error, result) => {
-            if (error)
-                util.internalServerError(response, error);
-            else
-                isEmpty(result) ? util.notFound(response) : toJson(response, result)
-        };
-    };
+    toJson(response, result) {
+      response.json(this.converter.toApi(result));
+    }
 
-    this.ok = (response) => (error, result) => error ? that.util.internalServerError(response, error) : response.end();
+    json(response) {
+      return (error, result) => {
+          if (error)
+              this.util.internalServerError(response, error);
+          else
+              this._isEmpty(result) ? this.util.notFound(response) : this.toJson(response, result)
+      };
+    }
+
+    ok(response) {
+      return (error, result) => error ? this.util.internalServerError(response, error) : response.end();
+    }
+
+    // Private
+
+    _isEmpty(result) {
+      return Array.isArray(result) ? !result[0] : result == null;
+    }
 }
 
 

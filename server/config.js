@@ -8,10 +8,12 @@ var fs   = require('fs');
 //-----------------------------------------------------------------------------
 // Public functions
 //-----------------------------------------------------------------------------
-function Config(path) { return yaml.safeLoad(fs.readFileSync(path, 'utf8')); }
+function loadConfig(path) {
+  return yaml.safeLoad(fs.readFileSync(path, 'utf8'));
+}
 
 
 //-----------------------------------------------------------------------------
 // Export
 //-----------------------------------------------------------------------------
-exports.Config = Config;
+exports.loadConfig = loadConfig;
