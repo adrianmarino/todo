@@ -19,7 +19,7 @@ Config file: ``` server/config/development.yml ```.
 npm run app
 ```
 
-**Step 2:** Got to [front end](http://localhost:8080).
+**Step 2:** Go to [front end](http://localhost:8080).
 
 ## Services
 
